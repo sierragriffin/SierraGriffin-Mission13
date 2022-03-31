@@ -1,0 +1,74 @@
+﻿<!--Bowler Contact List Page View-->
+
+@{
+    ViewData["Title"] = "Bowler List";
+}
+
+@model List<Bowler>
+
+
+<div class="row m-1 p-1">
+
+    <!--Filter By Team-->
+    <div id="types" class="col-3">
+        <vc:teams></vc:teams>
+    </div>
+
+    <!--Table for displaying bowler contact informations-->
+    <div class="col-9">
+        <div>
+            <h1 class="text-center">Bowler Contact List</h1>
+
+            <!--implementation of #notcoveredinthevideos-->
+            <!--dynamic header that displays selected team name-->
+            <h2 class="text-center">@ViewBag.TeamName</h2>
+            <br />
+
+            <table class="table table-bordered table-striped table-hover table-dark">
+
+                <thead class="font-weight-bold text-center text-uppercase">
+                    <tr>
+                        @*<td>Bowler ID</td>*@
+                        <td>First Name</td>
+                        <td style="width:5%">Middle Init.</td>
+                        <td>Last Name</td>
+                        <td>Address</td>
+                        <td>City</td>
+                        <td>State</td>
+                        <td>Zip</td>
+                        <td style="width:15%">Phone Number</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @*<td>@item.BowlerID</td>*@
+                            <td>@item.BowlerFirstName</td>
+                            <td>@item.BowlerMiddleInit</td>
+                            <td>@item.BowlerLastName</td>
+                            <td>@item.BowlerAddress</td>
+                            <td>@item.BowlerCity</td>
+                            <td>@item.BowlerState</td>
+                            <td>@item.BowlerZip</td>
+                            <td>@item.BowlerPhoneNumber</td>
+        
+
+                            <td><a class="btn btn-outline-warning" asp-controller="Home" asp-action="EditBowler" asp-route-bowlerid="@item.BowlerID">Edit</a></td>
+                            <td><a class="btn btn-outline-danger" asp-controller="Home" asp-action="Delete" asp-route-bowlerid="@item.BowlerID">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+            <a class="btn btn-primary" asp-controller="Home" asp-action="BowlerForm">Add Bowler</a>
+
+        </div>
+    </div>
+
+</div>
+
+
+
